@@ -20,7 +20,7 @@ const lengthQuotes = quotes.length;
 app.get('/api/quotes/random', (req, res, next) => {
   const random = getRandomInt(lengthQuotes);
   const randomQuote = quotes[random].quote;
-  res.status(400).send({
+  res.send({
     quote: randomQuote
   });
   }
