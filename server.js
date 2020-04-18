@@ -45,3 +45,16 @@ app.get('/api/quotes', (req, res, next) => {
     };
     res.send(objectToReturn);
   });
+
+  app.post('/api/quotes', (req, res, next) => {
+    const quoteUpdates = req.query;
+    if (req.query.person && req.query.quote) {
+      const newQuote = {
+        quote: req.query.quote,
+        person: req.query.person};
+      quotes.push(newQuote);
+      res.send(newQuote);
+    } else {
+      res.status(400).send();
+    }
+  })
