@@ -16,17 +16,17 @@ function getRandomInt(max) {
 }
 const lengthQuotes = quotes.length;
 
+// GET a random Quote.
 app.get('/api/quotes/random', (req, res, next) => {
   const random = getRandomInt(lengthQuotes);
-  //console.log(random);
   const randomQuote = quotes[random].quote;
-  //console.log(randomQuote);
   res.status(400).send({
     quote: randomQuote
   });
   }
 );
 
+//Get all quotes or quotes from an author
 app.get('/api/quotes', (req, res, next) => {
   const personQuote = req.query.person;
   const quotesArray = [];
@@ -46,6 +46,8 @@ app.get('/api/quotes', (req, res, next) => {
     res.send(objectToReturn);
   });
 
+
+//POST for adding new quotes
   app.post('/api/quotes', (req, res, next) => {
     const quoteUpdates = req.query;
     if (req.query.person && req.query.quote) {
