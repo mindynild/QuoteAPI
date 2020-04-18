@@ -26,3 +26,22 @@ app.get('/api/quotes/random', (req, res, next) => {
   });
   }
 );
+
+app.get('/api/quotes', (req, res, next) => {
+  const personQuote = req.query.person;
+  const quotesArray = [];
+  if (personQuote) {
+    quotes.forEach(quote => {
+      if (quote.person == personQuote) {
+        quotesArray.push(quote.quote);
+      }});
+    } else {
+      quotes.forEach(quote => {
+          quotesArray.push(quote.quote)
+        });
+    }
+    const objectToReturn = {
+      quotes: quotesArray
+    };
+    res.send(objectToReturn);
+  });
